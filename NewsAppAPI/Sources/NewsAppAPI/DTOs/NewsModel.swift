@@ -9,4 +9,5 @@ import Foundation
 
 public struct NewsModel: Decodable {
     public let results: [News]?
+    
 }

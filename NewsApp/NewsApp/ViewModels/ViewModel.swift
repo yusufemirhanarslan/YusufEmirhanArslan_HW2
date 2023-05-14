@@ -16,18 +16,20 @@ protocol ViewModelProtocol {
     
     func fetchData(value: String)
     func setSegmentedControl(index: Int) -> String
+    func getNews(_ indexPath: Int) -> News?
+    
 }
 
 protocol ViewModelDelegate: AnyObject {
     
-    
+    func reloadData()
 }
 
 final class ViewModel{
-   
-      let service: NewsServiceProtocol
-      weak var delegate: ViewModelDelegate?
-      var news: NewsModel!
+    
+    let service: NewsServiceProtocol
+    weak var delegate: ViewModelDelegate?
+    var news: [News] = []
     
     init(service: NewsServiceProtocol) {
         self.service = service
@@ -40,8 +42,9 @@ final class ViewModel{
             switch response {
                 
             case .success(let news):
+                self.news = []
                 self.news = news
-                print("Value: \(value) \n Variable: \(news)")
+                self.delegate?.reloadData()
             case .failure(let error):
                 print("Error = \(error.localizedDescription)")
             }
@@ -49,12 +52,16 @@ final class ViewModel{
     }
     
     var segmentedControlName = ["arts", "automobiles", "books", "business", "fashion", "food", "health", "home", "insider", "magazine", "movies", "nyregion", "obituaries", "opinion", "politics", "realestate", "science", "sports", "sundayreview", "technology", "theater", "t-magazine", "travel", "upshot", "us", "world"]
-        
     
 }
 
-
 extension ViewModel: ViewModelProtocol {
+    
+    func getNews(_ indexPath: Int) -> News? {
+        
+        self.news[indexPath]
+        
+    }
     
     var segmentedCount: Int {
         segmentedControlName.count
@@ -68,13 +75,10 @@ extension ViewModel: ViewModelProtocol {
     
     func fetchData(value: String) {
         fetchNews(value: value)
+        
     }
-    
     
     var numberOfItems: Int {
-        news.results!.count
+        self.news.count
     }
-    
-    
 }
-

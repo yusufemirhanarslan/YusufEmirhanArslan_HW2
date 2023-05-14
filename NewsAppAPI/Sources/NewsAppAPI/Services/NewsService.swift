@@ -11,7 +11,7 @@ import Alamofire
 
 public protocol NewsServiceProtocol: AnyObject {
     
-    func fetchNews(value: String, completion: @escaping(Result<NewsModel,Error>) -> Void)
+    func fetchNews(value: String, completion: @escaping(Result<[News],Error>) -> Void)
     
 }
 
@@ -19,7 +19,7 @@ public class NewsService: NewsServiceProtocol {
     
     public init() {}
     
-    public func fetchNews(value: String, completion: @escaping (Result<NewsModel, Error>) -> Void) {
+    public func fetchNews(value: String, completion: @escaping (Result<[News], Error>) -> Void) {
         
         let urlString = Constants.baseUrl + "\(value)" + Constants.secondUrl + Constants.apiKey
         
@@ -33,8 +33,8 @@ public class NewsService: NewsServiceProtocol {
                 
                 do {
                         
-                    let news = try decoder.decode(NewsModel.self, from: data)
-                        completion(.success(news))
+                    let response = try decoder.decode(NewsResponse.self, from: data)
+                    completion(.success(response.results))
                         
                     }catch {
                         print("****** JSON DECODE ERROR *******")

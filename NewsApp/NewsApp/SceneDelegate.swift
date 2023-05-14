@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let rootVC = storyBoard.instantiateViewController(identifier: "ViewController") as? ViewController else {
             return
         }
-        
+
         let viewModel = ViewModel(service: NewsService())
         rootVC.viewModel = viewModel
         
