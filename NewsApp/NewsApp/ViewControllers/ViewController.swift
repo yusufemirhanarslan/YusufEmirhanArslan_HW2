@@ -31,15 +31,11 @@ class ViewController: UIViewController {
         
         newsTitle.text = segmentedControl.titleForSegment(at: 0)?.uppercased()
         
-        tableView.register(UINib(nibName: "HomeCell", bundle: nil), forCellReuseIdentifier: "homeCell")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        viewModel.fetchData(value: viewModel.setSegmentedControl(index: 0))
         segmentedControl.selectedSegmentIndex = 0
         
+        viewModel.fetchData(value: viewModel.setSegmentedControl(index: segmentedControl.selectedSegmentIndex))
+        
+        tableView.register(UINib(nibName: "HomeCell", bundle: nil), forCellReuseIdentifier: "homeCell")
     }
     
     func setSegmentedControl() {
@@ -54,6 +50,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func selectedSegmentedControl(_ sender: Any) {
+        
         let index = segmentedControl.selectedSegmentIndex
         guard let title = segmentedControl.titleForSegment(at: index) else {return}
         
@@ -90,12 +87,28 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         if let model = viewModel.getNews(indexPath.row) {
             cell.set(newsModel: model)
         }
+        
+        cell.selectionStyle = .none
       
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         160
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let detailVC = storyboard?.instantiateViewController(identifier: "detailVC") as! DetailViewController
+        
+        if let model = viewModel.getNews(indexPath.row) {
+            detailVC.dataEqual(model: model)
+        }
+        
+        detailVC.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(detailVC, animated: true)
+        
+        
     }
     
     

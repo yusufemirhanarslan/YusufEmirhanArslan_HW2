@@ -9,23 +9,17 @@ import UIKit
 import NewsAppAPI
 import SDWebImage
 
-class HomeCell: UITableViewCell {
-
-    @IBOutlet weak var outView: UIView!
-    @IBOutlet weak var innerView: UIView!
-    @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var newsImageView: UIImageView!
-    @IBOutlet weak var newsTitle: UILabel!
-    @IBOutlet weak var newsSectionName: UILabel!
-    @IBOutlet weak var publisherName: UILabel!
-    @IBOutlet weak var outStackView: UIStackView!
+final class HomeCell: UITableViewCell {
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-       
-    }
-
+    @IBOutlet private weak var visualEffectView: UIView!
+    @IBOutlet private weak var outView: UIView!
+    @IBOutlet private weak var innerView: UIView!
+    @IBOutlet private weak var newsImageView: UIImageView!
+    @IBOutlet private weak var newsTitle: UILabel!
+    @IBOutlet private weak var newsSectionName: UILabel!
+    @IBOutlet private weak var publisherName: UILabel!
+    @IBOutlet private weak var outStackView: UIStackView!
+    @IBOutlet private weak var favoriteButton: UIImageView!
     
     func setup() {
         
@@ -34,6 +28,14 @@ class HomeCell: UITableViewCell {
         outStackView.layer.borderWidth = 1
         
         newsImageView.layer.cornerRadius = 20
+        
+        visualEffectView.layer.cornerRadius = 20
+        visualEffectView.clipsToBounds = true
+        
+        checkFavoriteButton(false)
+        favoriteButton.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addFavorite))
+        favoriteButton.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func set(newsModel: News) {
@@ -49,7 +51,25 @@ class HomeCell: UITableViewCell {
     }
     
     private func setImage(urlString: String) {
-          newsImageView.sd_setImage(with: URL(string: urlString))
+        newsImageView.sd_setImage(with: URL(string: urlString))
+        
+    }
+    
+    @objc func addFavorite(){
+        
+        checkFavoriteButton(true)
+    }
+    
+    func checkFavoriteButton(_ check: Bool) {
+        
+        switch check {
+            
+        case true:
+            favoriteButton.image = UIImage(named: "heartFill")
+        case false:
+            favoriteButton.image = UIImage(named: "heart")
+        }
+        
     }
     
 }

@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let windowScene = UIWindowScene(session: session, connectionOptions: connectionOptions)
         self.window = UIWindow(windowScene: windowScene)
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
         guard let rootVC = storyBoard.instantiateViewController(identifier: "ViewController") as? ViewController else {
             return
         }
@@ -27,7 +28,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewModel = ViewModel(service: NewsService())
         rootVC.viewModel = viewModel
         
-        self.window?.rootViewController = rootVC
+        let navigationController = UINavigationController(rootViewController: rootVC)
+        
+        self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
 
