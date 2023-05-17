@@ -48,6 +48,7 @@ final class HomeCell: UITableViewCell {
         newsSectionName.text = newsModel.section
         publisherName.text = newsModel.byline
         
+        
     }
     
     private func setImage(urlString: String) {
@@ -69,7 +70,5 @@ final class HomeCell: UITableViewCell {
         case false:
             favoriteButton.image = UIImage(named: "heart")
         }
-        
     }
-    
 }

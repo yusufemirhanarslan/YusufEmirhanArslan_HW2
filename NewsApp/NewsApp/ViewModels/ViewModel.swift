@@ -43,7 +43,9 @@ final class ViewModel{
                 
             case .success(let news):
                 self.news = []
-                self.news = news
+                self.news = news.filter({ news in
+                    !news.title!.isEmpty
+                })
                 self.delegate?.reloadData()
             case .failure(let error):
                 print("Error = \(error.localizedDescription)")

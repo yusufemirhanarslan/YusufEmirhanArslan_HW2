@@ -13,17 +13,17 @@ import SafariServices
 class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
 
     
-    @IBOutlet weak var outView: UIView!
-    @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    @IBOutlet weak var newsImageView: UIImageView!
-    @IBOutlet weak var newsTitle: UILabel!
-    @IBOutlet weak var sectionName: UILabel!
-    @IBOutlet weak var newsDescription: UITextField!
-    @IBOutlet weak var bottomView: UIView!
-    @IBOutlet weak var newsSiteButton: UIButton!
-    
-    var news: News?
+    @IBOutlet private weak var outView: UIView!
+    @IBOutlet private weak var favoriteButton: UIImageView!
+    @IBOutlet private weak var newsImageView: UIImageView!
+    @IBOutlet private weak var newsTitle: UILabel!
+    @IBOutlet private weak var sectionName: UILabel!
+    @IBOutlet private weak var newsDescription: UITextView!
+    @IBOutlet private weak var bottomView: UIView!
+    @IBOutlet private weak var newsSiteButton: UIButton!
+    @IBOutlet weak var sharedButton: UIButton!
+    @IBOutlet weak var authorLabel: UILabel!
+    private var news: News?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,28 +43,25 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         newsTitle.text = news?.title
         sectionName.text = news?.section
         newsDescription.text = news?.abstract
+        authorLabel.text = news?.byline
         
     }
     
     func design() {
         
-        visualEffectView.layer.cornerRadius = 20
-        visualEffectView.clipsToBounds = true
+        favoriteButton.image = UIImage(named: "heart")
         
-        let cornerRadius =  min(bottomView.bounds.width, bottomView.bounds.height) * Design.cornerRadiusRatio
-        let maskPath = UIBezierPath(roundedRect: bottomView.bounds,
-                                    byRoundingCorners: [.topRight, .topLeft],
-                                    cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = bottomView.bounds
-        maskLayer.path = maskPath.cgPath
+        favoriteButton.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeFavorite))
+        favoriteButton.addGestureRecognizer(tapGesture)
+
+        bottomView.layer.cornerRadius = Design.cornerRadius
         
-        bottomView.layer.mask = maskLayer
+        sharedButton.setImage(UIImage(named: "share"), for: .disabled)
     }
     
     func dataEqual(model: News){
         self.news = model
-        
     }
     
     @IBAction func openNewsSite(_ sender: Any) {
@@ -72,6 +69,10 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         if let url = news?.url{
             showNews(url: URL(string: url))
         }
+        
+    }
+    
+    @objc private func changeFavorite() {
         
     }
     
@@ -85,12 +86,26 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         }
         
     }
+    
+    @IBAction func sharedButton(_ sender: Any) {
+        
+        guard let newsUrl = news?.url else {return}
+        
+        let sharedInformation = [newsUrl]
+        let activityVC = UIActivityViewController(activityItems: sharedInformation as [Any], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        
+        present(activityVC, animated: true)
+        
+        
+    }
+    
 }
 
 extension DetailViewController {
     
     enum Design {
-        static let cornerRadiusRatio = 0.1
+        static let cornerRadius = 20.0
     }
     
 }
