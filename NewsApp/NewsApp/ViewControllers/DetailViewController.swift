@@ -96,18 +96,13 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         activityVC.popoverPresentationController?.sourceView = self.view
         
         present(activityVC, animated: true)
-        
-        
     }
-    
 }
-
 extension DetailViewController {
     
     enum Design {
         static let cornerRadius = 20.0
     }
-    
 }
 
 extension DetailViewController: UIScrollViewDelegate {

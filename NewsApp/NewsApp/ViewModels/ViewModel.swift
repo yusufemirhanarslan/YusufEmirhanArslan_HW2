@@ -76,7 +76,7 @@ extension ViewModel: ViewModelProtocol {
     
     
     func fetchData(value: String) {
-        fetchNews(value: value)
+        fetchNews(value: value.lowercased())
         
     }
     

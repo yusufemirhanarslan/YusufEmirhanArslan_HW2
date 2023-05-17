@@ -11,9 +11,10 @@ import Network
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var newsTitle: UILabel!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var newsTitle: UILabel!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var favoriesPageButton: UIButton!
     
     var value: String?
     var check: Bool?
@@ -28,6 +29,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         if monitorNetwork() {
+            
+            setupFavoriesButton()
+            
             setSegmentedControl()
             
             tableView.separatorStyle = .none
@@ -49,9 +53,17 @@ class ViewController: UIViewController {
         segmentedControl.removeAllSegments()
         
         for i in 0...viewModel.segmentedCount - 1 {
-            let name = viewModel.setSegmentedControl(index: i)
+            let name = viewModel.setSegmentedControl(index: i).uppercased()
             segmentedControl.insertSegment(withTitle: name, at: i , animated: true)
         }
+    }
+    
+    private func setupFavoriesButton() {
+        
+        favoriesPageButton.layer.cornerRadius = 20
+        favoriesPageButton.clipsToBounds = true
+        favoriesPageButton.imageView?.contentMode = .scaleAspectFill
+        
     }
     
     func monitorNetwork() -> Bool {
@@ -88,6 +100,14 @@ class ViewController: UIViewController {
         viewModel.fetchData(value: title)
         
     }
+    
+    @IBAction func favoriesPageButton(_ sender: Any) {
+        
+        let favoritiesViewController = storyboard?.instantiateViewController(identifier: "favoritiesViewController") as! FavoritiesViewController
+        navigationController?.pushViewController(favoritiesViewController, animated: true)
+        
+    }
+    
 }
 
 extension ViewController: ViewModelDelegate {

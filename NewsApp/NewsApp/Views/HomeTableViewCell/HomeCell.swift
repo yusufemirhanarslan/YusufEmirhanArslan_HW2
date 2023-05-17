@@ -31,6 +31,7 @@ final class HomeCell: UITableViewCell {
         
         visualEffectView.layer.cornerRadius = 20
         visualEffectView.clipsToBounds = true
+        visualEffectView.isHidden = true
         
         checkFavoriteButton(false)
         favoriteButton.isUserInteractionEnabled = true
