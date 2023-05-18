@@ -37,7 +37,7 @@ final class ViewModel{
     
     fileprivate func fetchNews(value: String) {
         
-        service.fetchNews(value: value) { response in
+        service.fetchNews(value: value) {response in
             
             switch response {
                 

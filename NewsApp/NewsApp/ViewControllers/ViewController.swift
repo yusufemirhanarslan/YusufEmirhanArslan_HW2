@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var favoriesPageButton: UIButton!
     
     var value: String?
-    var check: Bool?
     
     var viewModel: ViewModelProtocol! {
         didSet {
@@ -28,24 +27,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        if monitorNetwork() {
-            
-            setupFavoriesButton()
-            
-            setSegmentedControl()
-            
-            tableView.separatorStyle = .none
-            
-            newsTitle.text = segmentedControl.titleForSegment(at: 0)?.uppercased()
-            
-            segmentedControl.selectedSegmentIndex = 0
-            
-            viewModel.fetchData(value: viewModel.setSegmentedControl(index: segmentedControl.selectedSegmentIndex))
-            
-            tableView.register(UINib(nibName: "HomeCell", bundle: nil), forCellReuseIdentifier: "homeCell")
-        } else {
-            exit(0)
-        }
+        
+        setupFavoriesButton()
+        
+        setSegmentedControl()
+        
+        tableView.separatorStyle = .none
+        
+        newsTitle.text = self.segmentedControl.titleForSegment(at: 0)?.uppercased()
+        
+        segmentedControl.selectedSegmentIndex = 0
+        
+        viewModel.fetchData(value: viewModel.setSegmentedControl(index: segmentedControl.selectedSegmentIndex))
+        tableView.register(UINib(nibName: "HomeCell", bundle: nil), forCellReuseIdentifier: "homeCell")
+        
     }
     
     func setSegmentedControl() {
@@ -64,29 +59,6 @@ class ViewController: UIViewController {
         favoriesPageButton.clipsToBounds = true
         favoriesPageButton.imageView?.contentMode = .scaleAspectFill
         
-    }
-    
-    func monitorNetwork() -> Bool {
-        
-        let monitor = NWPathMonitor()
-        
-        monitor.pathUpdateHandler = { path in
-            
-            if path.status == .satisfied {
-                
-                DispatchQueue.main.async {
-                    self.check = true
-                }
-                
-            } else {
-                self.check = false
-            }
-        }
-        
-        let queue = DispatchQueue(label: "Network")
-        monitor.start(queue: queue)
-        
-        return self.check ?? true
     }
     
     @IBAction func selectedSegmentedControl(_ sender: Any) {
@@ -115,6 +87,7 @@ extension ViewController: ViewModelDelegate {
     func reloadData() {
         tableView.reloadData()
     }
+    
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -153,6 +126,3 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
-
-
-

@@ -54,7 +54,7 @@ final class HomeCell: UITableViewCell {
     
     private func setImage(urlString: String) {
         newsImageView.sd_setImage(with: URL(string: urlString))
-        
+       
     }
     
     @objc func addFavorite(){
