@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     var value: String?
     
+    
     var viewModel: ViewModelProtocol! {
         didSet {
             viewModel.delegate = self

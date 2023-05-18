@@ -9,6 +9,7 @@ import UIKit
 import NewsAppAPI
 import SDWebImage
 import SafariServices
+import CoreData
 
 class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
 
@@ -23,7 +24,19 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
     @IBOutlet private weak var newsSiteButton: UIButton!
     @IBOutlet weak var sharedButton: UIButton!
     @IBOutlet weak var authorLabel: UILabel!
+    
     private var news: News?
+    
+    private var saveControl = false {
+        
+        didSet {
+            if saveControl {
+                favoriteButton.image = UIImage(named: "heartFill")
+            } else {
+                favoriteButton.image = UIImage(named: "heart")
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +62,6 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
     
     func design() {
         
-        favoriteButton.image = UIImage(named: "heart")
         
         favoriteButton.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeFavorite))
@@ -72,7 +84,42 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         
     }
     
+    func saveData() {
+        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        
+        let managedObjectContext = appDelegate?.persistentContainer.viewContext
+        
+        let saveData = NSEntityDescription.insertNewObject(forEntityName: "FavoriteNews", into: managedObjectContext!)
+        
+        guard let imagePress = newsImageView.image?.jpegData(compressionQuality: 0.5) else {return}
+        
+         saveData.setValue(news?.abstract, forKey: "abstract")
+         saveData.setValue(news?.byline , forKey: "byline")
+         saveData.setValue(news?.section , forKey: "section")
+         saveData.setValue(news?.subsection, forKey: "subsection")
+         saveData.setValue(news?.title, forKey: "title")
+         saveData.setValue(news?.multimedia?.first?.url, forKey: "url")
+         saveData.setValue(imagePress, forKey: "image")
+         
+         do {
+             try managedObjectContext?.save()
+             print("Success")
+         }catch {
+             print("Failed")
+         }
+    }
+    
     @objc private func changeFavorite() {
+        
+        if saveControl {
+            saveControl = false
+        } else {
+            saveData()
+            saveControl = true
+        }
+        
+       
         
     }
     

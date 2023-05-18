@@ -49,6 +49,17 @@ final class HomeCell: UITableViewCell {
         newsSectionName.text = newsModel.section
         publisherName.text = newsModel.byline
         
+    }
+    
+    func favoritSet(news: NewsCoreData) {
+        setup()
+        
+        if let data = news.image {
+            newsImageView.image = UIImage(data: data)
+        }
+        newsTitle.text = news.title
+        newsSectionName.text = news.section
+        publisherName.text = news.byline
         
     }
     
