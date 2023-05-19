@@ -13,9 +13,8 @@ import CoreData
 
 class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
 
-    
     @IBOutlet private weak var outView: UIView!
-    @IBOutlet private weak var favoriteButton: UIImageView!
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet private weak var newsImageView: UIImageView!
     @IBOutlet private weak var newsTitle: UILabel!
     @IBOutlet private weak var sectionName: UILabel!
@@ -27,26 +26,19 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
     
     private var news: News?
     
-    private var saveControl = false {
-        
-        didSet {
-            if saveControl {
-                favoriteButton.image = UIImage(named: "heartFill")
-            } else {
-                favoriteButton.image = UIImage(named: "heart")
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         setup()
         design()
+        
+        favoriteButton.setImage(checkUrl() ? UIImage(named: "heartFill") : UIImage(named: "heart"), for: .normal)
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+  
     func setup() {
         
         if let url = news?.multimedia?.first?.url {
@@ -62,11 +54,6 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
     
     func design() {
         
-        
-        favoriteButton.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeFavorite))
-        favoriteButton.addGestureRecognizer(tapGesture)
-
         bottomView.layer.cornerRadius = Design.cornerRadius
         
         sharedButton.setImage(UIImage(named: "share"), for: .disabled)
@@ -81,7 +68,6 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         if let url = news?.url{
             showNews(url: URL(string: url))
         }
-        
     }
     
     func saveData() {
@@ -99,7 +85,7 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
          saveData.setValue(news?.section , forKey: "section")
          saveData.setValue(news?.subsection, forKey: "subsection")
          saveData.setValue(news?.title, forKey: "title")
-         saveData.setValue(news?.multimedia?.first?.url, forKey: "url")
+        saveData.setValue(news?.url, forKey: "url")
          saveData.setValue(imagePress, forKey: "image")
          
          do {
@@ -109,17 +95,77 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
              print("Failed")
          }
     }
-    
-    @objc private func changeFavorite() {
+   
+    @IBAction func favoriteButtonAction(_ sender: Any) {
         
-        if saveControl {
-            saveControl = false
+        if checkUrl() {
+          deleteData()
         } else {
             saveData()
-            saveControl = true
         }
         
-       
+        favoriteButton.setImage(checkUrl() ? UIImage(named: "heartFill") : UIImage(named: "heart"), for: .normal)
+    }
+    
+    func checkUrl() -> Bool {
+        
+        var urlArray: [String] = []
+        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        
+        let managedObjectContext = appDelegate?.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteNews")
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do {
+            
+           let results = try managedObjectContext?.fetch(fetchRequest)
+            
+            for result in results as! [NSManagedObject] {
+                
+                if let url = result.value(forKey: "url") as? String {
+                    
+                    urlArray.append(url)
+                }
+                
+            }
+            
+            return urlArray.contains(news?.url ?? "")
+            
+        }catch {
+            
+        }
+        return false
+        
+    }
+    
+    func deleteData() {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        
+        let managedObjectContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteNews")
+        fetchRequest.predicate = NSPredicate(format: "url = %@", news?.url ?? "")
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do {
+            
+           let results = try managedObjectContext.fetch(fetchRequest)
+                    
+            for result in results as! [NSManagedObject] {
+                managedObjectContext.delete(result)
+            }
+            do {
+                try managedObjectContext.save()
+            }catch {
+                
+            }
+            
+        }catch {
+            
+        }
         
     }
     

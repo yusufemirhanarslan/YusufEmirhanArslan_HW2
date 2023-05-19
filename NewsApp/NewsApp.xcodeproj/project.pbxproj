@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B4174A982A137FED0037B8B7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4174A972A137FED0037B8B7 /* DetailViewController.swift */; };
-		B4174A9A2A138A760037B8B7 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4174A992A138A760037B8B7 /* DetailsViewModel.swift */; };
 		B44773AC2A1670FB0075126B /* NewsCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44773AB2A1670FB0075126B /* NewsCoreData.swift */; };
 		B4B724F92A10F01B0015F19E /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B724F72A10F01B0015F19E /* HomeCell.swift */; };
 		B4B724FA2A10F01B0015F19E /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B724F82A10F01B0015F19E /* HomeCell.xib */; };
@@ -48,7 +47,6 @@
 
 /* Begin PBXFileReference section */
 		B4174A972A137FED0037B8B7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		B4174A992A138A760037B8B7 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		B44773AB2A1670FB0075126B /* NewsCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCoreData.swift; sourceTree = "<group>"; };
 		B4B724F72A10F01B0015F19E /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		B4B724F82A10F01B0015F19E /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				B4B8C2E22A1018D90062DAB7 /* ViewModel.swift */,
-				B4174A992A138A760037B8B7 /* DetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -345,7 +342,6 @@
 				B4B8C2A92A0FE5E50062DAB7 /* ViewController.swift in Sources */,
 				B4DF391D2A15860700BA4C80 /* FavoritiesViewController.swift in Sources */,
 				B4B8C2A52A0FE5E50062DAB7 /* AppDelegate.swift in Sources */,
-				B4174A9A2A138A760037B8B7 /* DetailsViewModel.swift in Sources */,
 				B4B8C2AF2A0FE5E50062DAB7 /* NewsApp.xcdatamodeld in Sources */,
 				B4B724F92A10F01B0015F19E /* HomeCell.swift in Sources */,
 				B4B8C2A72A0FE5E50062DAB7 /* SceneDelegate.swift in Sources */,

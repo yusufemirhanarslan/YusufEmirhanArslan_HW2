@@ -12,8 +12,8 @@ class FavoritiesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var fetchData: [NewsCoreData?] = []
-    var news = NewsCoreData()
+    private var fetchData: [NewsCoreData?] = []
+    private var news = NewsCoreData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,8 +75,7 @@ class FavoritiesViewController: UIViewController {
         }catch {
             
         }
-    }
-    
+    }  
 
 }
 

@@ -21,22 +21,22 @@
                                 <rect key="frame" x="4" y="111" width="385" height="136"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KATEGORİ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTo-i0-vBc">
-                                        <rect key="frame" x="0.0" y="0.0" width="385" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="385" height="45"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="jsZ-A9-LPU"/>
+                                            <constraint firstAttribute="height" constant="45" id="jsZ-A9-LPU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93A-wJ-JJD">
-                                        <rect key="frame" x="0.0" y="40" width="385" height="56"/>
+                                        <rect key="frame" x="0.0" y="45" width="385" height="46"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBk-Er-t73">
-                                                <rect key="frame" x="0.0" y="0.0" width="385" height="56"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="385" height="46"/>
                                                 <subviews>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yqw-sT-zaD">
-                                                        <rect key="frame" x="3" y="8" width="131" height="41"/>
+                                                        <rect key="frame" x="3" y="8" width="131" height="31"/>
                                                         <segments>
                                                             <segment title="First"/>
                                                             <segment title="Second"/>
@@ -57,9 +57,9 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc9-69-fTr">
-                                        <rect key="frame" x="0.0" y="96" width="385" height="40"/>
+                                        <rect key="frame" x="0.0" y="91" width="385" height="45"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="bFf-nZ-YmT"/>
+                                            <constraint firstAttribute="height" constant="45" id="bFf-nZ-YmT"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="22"/>
                                         <nil key="textColor"/>
@@ -191,17 +191,22 @@
                                                                                     </constraints>
                                                                                 </view>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JX-HK-snl">
-                                                                                    <rect key="frame" x="5" y="0.0" width="347" height="50"/>
+                                                                                    <rect key="frame" x="5" y="0.0" width="335" height="50"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="9vK-3o-9B3">
-                                                                                    <rect key="frame" x="352" y="0.0" width="36" height="50"/>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ymx-ah-mXX">
+                                                                                    <rect key="frame" x="340" y="0.0" width="48" height="50"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="36" id="5A2-JW-bkf"/>
+                                                                                        <constraint firstAttribute="width" constant="48" id="dcE-o9-HJy"/>
                                                                                     </constraints>
-                                                                                </imageView>
+                                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                    <state key="normal" image="heart"/>
+                                                                                    <connections>
+                                                                                        <action selector="favoriteButtonAction:" destination="Owl-ge-vaU" eventType="touchUpInside" id="cP1-yt-elo"/>
+                                                                                    </connections>
+                                                                                </button>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNe-nb-eH9">
                                                                                     <rect key="frame" x="388" y="0.0" width="5" height="50"/>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -321,7 +326,7 @@
                     <connections>
                         <outlet property="authorLabel" destination="grY-JS-c3x" id="8LS-Br-bXv"/>
                         <outlet property="bottomView" destination="UEs-6I-A83" id="1Fh-gZ-GEI"/>
-                        <outlet property="favoriteButton" destination="9vK-3o-9B3" id="jay-c2-SD7"/>
+                        <outlet property="favoriteButton" destination="Ymx-ah-mXX" id="ii5-pE-v1S"/>
                         <outlet property="newsDescription" destination="fJN-cz-ybI" id="xVC-Bb-enB"/>
                         <outlet property="newsImageView" destination="9Uf-MK-3Ke" id="rgj-kf-Ufo"/>
                         <outlet property="newsSiteButton" destination="et0-td-aBk" id="RVj-zu-yRX"/>
@@ -343,7 +348,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uFP-lk-7C8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uFP-lk-7C8">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
