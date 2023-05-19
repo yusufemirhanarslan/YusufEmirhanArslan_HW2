@@ -13,8 +13,18 @@
 ## **Uygulamanın Tanıtımı**
  
 Uygulama Videosu           
-![] (https://github.com/yusufemirhanarslan/YusufEmirhanArslan_HW2/blob/main/Photos/newsApp.gif)
+![](https://github.com/yusufemirhanarslan/YusufEmirhanArslan_HW2/blob/main/Photos/newsApp.gif)
 
   Paylaş Butonu            | Mesaj Paylaşımı 
 :-------------------------:|:-------------------------:
-![] (https://github.com/yusufemirhanarslan/YusufEmirhanArslan_HW2/blob/main/Photos/sharePageSheet.jpeg) | ![] (https://github.com/yusufemirhanarslan/YusufEmirhanArslan_HW2/blob/main/Photos/sharePageMessage.jpeg)
+![](https://github.com/yusufemirhanarslan/YusufEmirhanArslan_HW2/blob/main/Photos/sharePageSheet.jpeg) | ![](https://github.com/yusufemirhanarslan/YusufEmirhanArslan_HW2/blob/main/Photos/sharePageMessage.jpeg)
+
+## Kullanılan Teknolojiler
+- :round_pushpin: NYTimes API: API'dan veri çekebilmek için kullanıldı.
+- :round_pushpin: Alamofire: HTTP request için kullanıldı.
+- :round_pushpin: SDWebImage: URL'den image yüklemek için kullanıldı.
+
+## Gereksinimler
+- :round_pushpin: Swift 5.0 veya üzeri
+- :round_pushpin: iOS 13.0 veya üzeri
+- :round_pushpin: Uygulamayı açabilmek için **NewsApp.xcworkspace** dosyasını çalıştırın
