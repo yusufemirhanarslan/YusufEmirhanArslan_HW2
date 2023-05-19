@@ -12,7 +12,9 @@
  
 ## **Uygulamanın Tanıtımı**
  
-Uygulama Videosu             | Ana Sayfa
-:-------------------------:|:-------------------------:
-![] (https://github.com/yusufemirhanarslan/YusufEmirhanArslan_HW2/blob/main/GIF/newsApp.gif)
+Uygulama Videosu           
+![] (https://github.com/yusufemirhanarslan/YusufEmirhanArslan_HW2/blob/main/Photos/newsApp.gif)
 
+  Paylaş Butonu            | Mesaj Paylaşımı 
+:-------------------------:|:-------------------------:
+![] (https://github.com/yusufemirhanarslan/YusufEmirhanArslan_HW2/blob/main/Photos/sharePageSheet.jpeg) | ![] (https://github.com/yusufemirhanarslan/YusufEmirhanArslan_HW2/blob/main/Photos/sharePageMessage.jpeg)
