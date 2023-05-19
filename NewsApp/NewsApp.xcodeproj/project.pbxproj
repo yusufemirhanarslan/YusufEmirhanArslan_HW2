@@ -107,9 +107,31 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		B49334972A17AF2600A1DDF9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4B8C2A42A0FE5E50062DAB7 /* AppDelegate.swift */,
+				B4B8C2A62A0FE5E50062DAB7 /* SceneDelegate.swift */,
+				B4B8C2B02A0FE5E60062DAB7 /* Assets.xcassets */,
+				B4B8C2B22A0FE5E60062DAB7 /* LaunchScreen.storyboard */,
+				B4B8C2B52A0FE5E60062DAB7 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B49334982A17AF4700A1DDF9 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B4B8C2AD2A0FE5E50062DAB7 /* NewsApp.xcdatamodeld */,
+				B44773AB2A1670FB0075126B /* NewsCoreData.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		B4B724F02A10C6170015F19E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B4B8C2AA2A0FE5E50062DAB7 /* Main.storyboard */,
 				B4B724F62A10F0000015F19E /* HomeTableViewCell */,
 			);
 			path = Views;
@@ -149,17 +171,11 @@
 		B4B8C2A32A0FE5E50062DAB7 /* NewsApp */ = {
 			isa = PBXGroup;
 			children = (
+				B49334982A17AF4700A1DDF9 /* CoreData */,
+				B49334972A17AF2600A1DDF9 /* Supporting Files */,
 				B4174A962A137FD40037B8B7 /* ViewControllers */,
 				B4B724F02A10C6170015F19E /* Views */,
 				B4B8C2E12A1018CC0062DAB7 /* ViewModels */,
-				B4B8C2A42A0FE5E50062DAB7 /* AppDelegate.swift */,
-				B4B8C2A62A0FE5E50062DAB7 /* SceneDelegate.swift */,
-				B4B8C2AA2A0FE5E50062DAB7 /* Main.storyboard */,
-				B4B8C2B02A0FE5E60062DAB7 /* Assets.xcassets */,
-				B4B8C2B22A0FE5E60062DAB7 /* LaunchScreen.storyboard */,
-				B4B8C2B52A0FE5E60062DAB7 /* Info.plist */,
-				B4B8C2AD2A0FE5E50062DAB7 /* NewsApp.xcdatamodeld */,
-				B44773AB2A1670FB0075126B /* NewsCoreData.swift */,
 			);
 			path = NewsApp;
 			sourceTree = "<group>";
@@ -523,7 +539,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NewsApp/Info.plist;
+				INFOPLIST_FILE = "NewsApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -551,7 +567,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NewsApp/Info.plist;
+				INFOPLIST_FILE = "NewsApp/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
